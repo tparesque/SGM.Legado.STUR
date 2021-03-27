@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>SGM.Legado.STUR.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />   
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />    
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />   
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SGM.Legado.STUR.Core\SGM.Legado.STUR.Core.csproj" />
+  </ItemGroup>
+
+</Project>
