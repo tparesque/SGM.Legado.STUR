@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SGM.Legado.STUR.Api.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="SGM.Legado.STUR.Api.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />   
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />    
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />   
