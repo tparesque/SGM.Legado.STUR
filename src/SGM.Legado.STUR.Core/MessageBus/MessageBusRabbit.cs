@@ -34,7 +34,7 @@ namespace SGM.Legado.STUR.Core.MessageBus
 
 		}
 
-		public async Task PublishAsync<T>(T message) where T : IntegrationEvent
+		public async Task Publish<T>(T message) where T : IntegrationEvent
 		{
 			if (ExisteConexao() == false)
 			{
@@ -53,7 +53,7 @@ namespace SGM.Legado.STUR.Core.MessageBus
 			}
 		}
 
-		public void SubscribeAsync<T>(Action<T> onMessage) where T : class
+		public void Subscribe<T>(Action<T> onMessage) where T : class
 		{
 			if (ExisteConexao() == false)
 			{

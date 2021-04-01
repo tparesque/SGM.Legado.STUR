@@ -8,9 +8,9 @@ namespace SGM.Legado.STUR.Core.MessageBus
 	{
 		#region Padrão Publish/Subscribe
 
-		Task PublishAsync<T>(T message) where T : IntegrationEvent;
+		Task Publish<T>(T message) where T : IntegrationEvent;
 
-		void SubscribeAsync<T>(Action<T> onMessage) where T : class;
+		void Subscribe<T>(Action<T> onMessage) where T : class;
 
 		#endregion
 	}
