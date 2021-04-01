@@ -42,7 +42,7 @@ namespace SGM.Legado.STUR.Core.MessageBus
 			}
 			else
 			{
-				string tipo = message.MessageType;
+				string tipo = typeof(T).Name;
 
 				_channel.QueueDeclare(queue: tipo, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
@@ -61,7 +61,9 @@ namespace SGM.Legado.STUR.Core.MessageBus
 			}
 			else
 			{
-				_channel.QueueDeclare(queue: "IsencaoIptuSolicitadoIntegrationEvent", durable: false, exclusive: false, autoDelete: false, arguments: null);
+				string tipo = typeof(T).Name;
+
+				_channel.QueueDeclare(queue: tipo, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
 				//stoppingToken.ThrowIfCancellationRequested();
 
@@ -81,7 +83,7 @@ namespace SGM.Legado.STUR.Core.MessageBus
 				consumer.Unregistered += Consumer_Unregistered;
 				consumer.ConsumerCancelled += Consumer_ConsumerCancelled;
 
-				_channel.BasicConsume("IsencaoIptuSolicitadoIntegrationEvent", false, consumer);
+				_channel.BasicConsume(tipo, false, consumer);
 
 			}
 		}
