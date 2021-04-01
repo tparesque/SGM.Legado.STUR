@@ -21,7 +21,7 @@ namespace SGM.Legado.Api.STUR
 			services.AddControllers();
 			services.AddSwaggerGenConfig();
 
-			services.AddMessageBus(Configuration.GetSection("MessageQueueConnection")["MessageBus"]);
+			services.AddMessageBus(Configuration);
 			services.AddHostedService<SolicitacaoIsencaoIptuIntegrationHandler>();
 		}
 

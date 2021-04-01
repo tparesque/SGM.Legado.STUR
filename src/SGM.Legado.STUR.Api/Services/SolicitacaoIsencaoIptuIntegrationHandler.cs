@@ -18,12 +18,12 @@ namespace SGM.Legado.STUR.Api.Services
 
 		protected override Task ExecuteAsync(CancellationToken stoppingToken)
 		{
-			_messageBus.SubscribeAsync<IsencaoIptuSolicitadoIntegrationEvent>("isencao_iptu_solicitaca", async solicitacao => await ProcessarSolicitacao(solicitacao));
+			_messageBus.SubscribeAsync<IsencaoIptuSolicitadoIntegrationEvent>(solicitacao => ProcessarSolicitacao(solicitacao));
 
 			return Task.CompletedTask;
 		}
 
-		private async Task ProcessarSolicitacao(IsencaoIptuSolicitadoIntegrationEvent solicitacao)
+		private void ProcessarSolicitacao(IsencaoIptuSolicitadoIntegrationEvent solicitacao)
 		{
 			SituacaoSolicitacaoEnum situacaoSolicitacao;
 			string justificativa = string.Empty;
@@ -49,8 +49,8 @@ namespace SGM.Legado.STUR.Api.Services
 				situacaoSolicitacao,
 				mockUsuarioNomeQueProcessou,
 				mockUsuarioIdQueProcessou);
-			
-			await _messageBus.PublishAsync(solicitacaoProcessada);
+
+			_messageBus.PublishAsync(solicitacaoProcessada);
 
 			Console.WriteLine("***** RabbitMQ ***** IsencaoIptuProcessadoIntegrationEvent Finalizado");
 		}

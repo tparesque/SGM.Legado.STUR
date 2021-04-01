@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SGM.Legado.STUR.Core.MessageBus;
 using System;
 
@@ -6,14 +7,11 @@ namespace SGM.Legado.STUR.Api.Configuration
 {
 	public static class DependencyInjectionExtensions
     {
-        public static IServiceCollection AddMessageBus(this IServiceCollection services, string connection)
+        public static IServiceCollection AddMessageBus(this IServiceCollection services, IConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(connection))
-            {
-                throw new ArgumentNullException();
-            }
+            services.Configure<RabbitMqConfigurations>(configuration.GetSection("MessageQueueConnection"));
 
-            services.AddSingleton<IMessageBus>(new MessageBus(connection));
+            services.AddSingleton<IMessageBus, MessageBusRabbit>();
 
             return services;
         }
