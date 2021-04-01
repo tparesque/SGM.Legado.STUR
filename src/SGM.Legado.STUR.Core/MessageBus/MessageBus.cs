@@ -39,27 +39,6 @@ namespace SGM.Legado.STUR.Core.MessageBus
 
 		#endregion
 
-		#region Padrão Request/Response
-
-		public async Task<TResponse> RequestAsync<TRequest, TResponse>(TRequest request)
-			where TRequest : IntegrationEvent 
-			where TResponse : ResponseMessage
-		{
-			TryConnect();
-			return await _bus.Rpc.RequestAsync<TRequest, TResponse>(request);
-		}
-
-		public async Task<IDisposable> RespondAsync<TRequest, TResponse>(Func<TRequest, Task<TResponse>> responder)
-			where TRequest : IntegrationEvent 
-			where TResponse : ResponseMessage
-		{
-			TryConnect();
-			return await _bus.Rpc.RespondAsync(responder);
-		}
-
-
-		#endregion
-
 		#region Métodos Auxiliares
 
 		private void TryConnect()
