@@ -28,7 +28,7 @@ namespace SGM.Legado.STUR.Api.Services
 			SituacaoSolicitacaoEnum situacaoSolicitacao;
 			string justificativa = string.Empty;
 
-			if (DeveAprovarIsencao())
+			if (DeveAprovarIsencao(solicitacao.MatriculaImovel))
 			{
 				situacaoSolicitacao = SituacaoSolicitacaoEnum.Deferido;
 				justificativa = $"O contribuinte apresentou elementos que justificassem o deferimento da solicitação. O imóvel com a matrícula {solicitacao.MatriculaImovel} está isento de IPTU para o exercício corrente. [mock]";
@@ -55,9 +55,9 @@ namespace SGM.Legado.STUR.Api.Services
 			Console.WriteLine("***** RabbitMQ ***** IsencaoIptuProcessadoIntegrationEvent Finalizado");
 		}
 
-		private bool DeveAprovarIsencao()
+		private bool DeveAprovarIsencao(string matriculaImovel)
 		{
-			return new Random().Next(2) == 0;
+			return matriculaImovel.Length >= 5;
 		}
 	}
 }
