@@ -12,12 +12,12 @@ namespace SGM.Legado.STUR.Core.MensagensIntegracao
 		public string UsuarioNome { get; private set; }
 		public Guid UsuarioId { get; private set; }
 
-		public IsencaoIptuProcessadoIntegrationEvent(Guid solicitacaoId, string matriculaImovel, string justificativa, SituacaoSolicitacaoEnum situacao, string usuarioNome, Guid usuarioId)
+		public IsencaoIptuProcessadoIntegrationEvent(Guid solicitacaoId, string matriculaImovel, string justificativa, SituacaoSolicitacaoEnum situacaoSolicitacao, string usuarioNome, Guid usuarioId)
 		{
 			base.AggregateId = solicitacaoId;
 			MatriculaImovel = matriculaImovel;
 			Justificativa = justificativa;
-			SituacaoSolicitacao = situacao;
+			SituacaoSolicitacao = situacaoSolicitacao;
 			UsuarioNome = usuarioNome;
 			UsuarioId = usuarioId;
 		}
